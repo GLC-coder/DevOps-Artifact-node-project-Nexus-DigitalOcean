@@ -230,6 +230,24 @@ curl -u username:password -X GET '[http://{nexus-ip}:8081/](http://24.199.124.10
 
 ![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%209.57.52%20pm.png)
 
+###### Execute a command to fetch the latest artifact itself with the download URL
+
+```
+wget --user=admin --ask-password http://24.199.124.10:8081/repository/npm-hosted/bootcamp-node-project/-/bootcamp-node-project-1.0.0.tgz
+```
+
+###### unpack the downloaded file and run on the server
+
+```
+
+```
+
+### Automatically fetch the latest version from npm artifact repository, unpack it and run on the server via a shell script
+
+```
+
+```
+
 ### Step 8: Configure Cleanup policy and Task
 
 ###### Configure Cleanup policy with making deletion mark for all maven type repositories
