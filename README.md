@@ -172,43 +172,63 @@ cat /opt/sonatype-work/nexus3/admin.password
 
 ![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-27%20at%208.46.21%20pm.png)
 
+###### Create a npm hosted repository and associate it with newly created blob store
+
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%208.15.24%20pm.png)
+
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%208.16.31%20pm.png)
+
 ###### Create a new user of Nexus with relevant privilege role for developer team to upload and fetch npm artifact
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-28%20at%207.20.28%20pm.png)
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%208.19.32%20pm.png)
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-28%20at%207.20.44%20pm.png)
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%208.23.05%20pm.png)
 
-### Step 6 : Configure Java-Gradle file for building and publishing
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%208.24.06%20pm.png)
 
-###### Add configuration into build.gradle file
+###### Active npm bearer token realm
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-27%20at%2010.46.51%20pm.png)
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%209.31.13%20pm.png)
 
-###### Update the root project name in settings.gradle file
+### Step 6 : Configure node package.json file for building and publishing
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-27%20at%2010.47.12%20pm.png)
+###### Add configuration into package.json file
 
-###### Create environment variables in gradle.properties
-
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-27%20at%2010.47.02%20pm.png)
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%209.32.02%20pm.png)
 
 ### Step 7: Build and Publish
 
-###### build jar file in Java-app root folder
+###### pack jar file in Java-app root folder
 
 ```
-./gradlew build
+npm pack
 ```
+
+###### login from node app to Nexus
+
+```
+ npm login --registry=http://24.199.124.10:8081/repository/npm-hosted/
+```
+
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%209.34.20%20pm.png)
 
 ###### publish the artifact to Nexus
 
 ```
-./gradle publish
+npm publish
 ```
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-27%20at%206.59.56%20pm.png)
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%209.41.21%20pm.png)
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-27%20at%2010.46.38%20pm.png)
+### Step 9:Download from Nexus and start application
+
+###### Fetch the download URL info for the latest NodeJS app artifact
+
+```
+curl -u username:password -X GET '[http://{nexus-ip}:8081/](http://24.199.124.10:8081/)service/rest/v1/components?repository=npm-hosted&sort=version'
+```
+
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%209.57.52%20pm.png)
 
 ### Step 8: Configure Cleanup policy and Task
 
