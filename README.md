@@ -258,6 +258,8 @@ npm install
 npm start
 ```
 
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/tree/master/images)
+
 ### Step 8: Automatically fetch the latest version from npm artifact repository, unpack it and run on the server via a shell script
 
 ###### Write a shell script to automatically fetch the npm artifact from npm-hosted repository
@@ -280,7 +282,7 @@ nodeartifactDownloadUrl=$(jq '.items[].assets[].downloadUrl' artifact.json --raw
 wget --http-user=(username) --http-password=(password) $nodeartifactDownloadUrl
 ```
 
-![image]()
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-29%20at%209.38.42%20pm.png)
 
 ###### run the shell script
 
@@ -309,3 +311,5 @@ npm install
 ```
 npm start
 ```
+
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/tree/master/images)
