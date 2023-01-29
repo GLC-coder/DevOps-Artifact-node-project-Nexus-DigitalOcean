@@ -220,7 +220,7 @@ npm publish
 
 ![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%209.41.21%20pm.png)
 
-### Step 9:Download from Nexus and start application
+### Step :Download manually from Nexus and start application
 
 ###### Fetch the download URL info for the latest NodeJS app artifact
 
@@ -260,7 +260,7 @@ npm start
 
 ![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-29%20at%208.18.40%20pm.png)
 
-### Step 8: Automatically fetch the latest version from npm artifact repository, unpack it and run on the server via a shell script
+### Step 9: Automatically fetch the latest version from npm artifact repository, unpack it and run on the server via a shell script
 
 ###### Write a shell script to automatically fetch the npm artifact from npm-hosted repository
 
