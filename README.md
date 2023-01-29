@@ -225,7 +225,7 @@ npm publish
 ###### Fetch the download URL info for the latest NodeJS app artifact
 
 ```
-curl -u username:password -X GET '[http://{nexus-ip}:8081/](http://24.199.124.10:8081/)service/rest/v1/components?repository=npm-hosted&sort=version'
+curl -u username:password -X GET 'http://{nexus-ip}:8081/service/rest/v1/components?repository=npm-hosted&sort=version'
 ```
 
 ![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-28%20at%209.57.52%20pm.png)
@@ -239,33 +239,73 @@ wget --user=admin --ask-password http://24.199.124.10:8081/repository/npm-hosted
 ###### unpack the downloaded file and run on the server
 
 ```
-
-```
-
-### Automatically fetch the latest version from npm artifact repository, unpack it and run on the server via a shell script
-
+tar -zxvf bootcamp-node-project-1.0.0.tgz
 ```
 
 ```
+cd package
+```
 
-### Step 8: Configure Cleanup policy and Task
+###### Install all npm dependencies
 
-###### Configure Cleanup policy with making deletion mark for all maven type repositories
+```
+npm install
+```
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-28%20at%203.46.26%20pm.png)
+###### Run the node app on Droplet server
 
-###### Associate the cleanup policy with relevant repository
+```
+npm start
+```
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-28%20at%203.47.03%20pm.png)
+### Step 8: Automatically fetch the latest version from npm artifact repository, unpack it and run on the server via a shell script
 
-###### Create Task for empty storage daily
+###### Write a shell script to automatically fetch the npm artifact from npm-hosted repository
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-28%20at%203.48.51%20pm.png)
+```
+sudo vim run_node_app.sh
+```
 
-###### Outcomes after running cleanup policy and task for empty storage manually
+###### shell script
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-28%20at%203.49.54%20pm.png)
+```
+#! /bin/bash
+# fetch the artifact file and save it in a json file
+curl -u (username):(password) -X GET 'http://24.199.124.10:8081/service/rest/v1/components?repository=npm-hosted&sort=version' | jq "." > artifact.json
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-28%20at%203.50.10%20pm.png)
+# grap the download url from the saved node_artifact.json by json processor tool:'jq'
+nodeartifactDownloadUrl=$(jq '.items[].assets[].downloadUrl' artifact.json --raw-output)
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-Java-Gradle-Nexus-DigitalOcean/blob/master/image/Screenshot%202023-01-28%20at%203.50.39%20pm.png)
+# fetch the artifact with the extracted downloadURl by 'wget'
+wget --http-user=(username) --http-password=(password) $nodeartifactDownloadUrl
+```
+
+![image]()
+
+###### run the shell script
+
+```
+bash run_node.app.sh
+```
+
+###### unpack the downloaded artifact
+
+```
+tar -zxvf bootcamp-node-project-1.0.0.tgz
+```
+
+```
+cd package
+```
+
+###### Install all npm dependencies
+
+```
+npm install
+```
+
+###### Run the node app on Droplet server
+
+```
+npm start
+```
