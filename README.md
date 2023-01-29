@@ -258,7 +258,7 @@ npm install
 npm start
 ```
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/tree/master/images)
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-29%20at%208.18.40%20pm.png)
 
 ### Step 8: Automatically fetch the latest version from npm artifact repository, unpack it and run on the server via a shell script
 
@@ -312,4 +312,4 @@ npm install
 npm start
 ```
 
-![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/tree/master/images)
+![image](https://github.com/GLC-coder/DevOps-Artifact-node-project-Nexus-DigitalOcean/blob/master/images/Screenshot%202023-01-29%20at%208.18.40%20pm.png)
