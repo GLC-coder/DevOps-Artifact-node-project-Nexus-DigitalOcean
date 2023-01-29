@@ -1,4 +1,4 @@
-# Java-Gradle Artifact On Nexus
+# Node-App Artifact On Nexus
 
 Run Nexus on Droplet DigitalOcean and publish Node-App Artifact to Nexus
 
